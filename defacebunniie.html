@@ -1,0 +1,153 @@
+<head>
+<meta charset="UTF-8">
+<title>bunniie :3</title>
+
+<div class="container">
+    <img src="https://i.imgur.com/nFmqHF8.jpeg" alt="bunniie">
+
+    <div class="text">
+        by bunniie
+    </div>
+<!-- Botão Discord igual ao Twitter -->
+<a href="https://discord.gg/YUh5NjJjNS" target="_blank" class="btn">.gg/fuzilcommunity</a>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        width: 100%;
+        height: 100%;
+        background: url("https://i.imgur.com/SDCBoqd.jpeg") no-repeat center center;
+        background-size: cover;
+        filter: blur(-1px);
+        transform: scale(1.1);
+        z-index: 0;        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        flex-direction: column;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+    }
+    
+  .link-discord {
+    margin-top: 15px;
+  }
+  .link-discord a {
+    color: #f0d6ee;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .link-discord a:hover {
+    text-decoration: underline;
+  }
+
+  .btn {
+    margin-top: 15px;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fffdff;
+    padding: 6px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 20px;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    background: #f0d6ee;
+    color: #fff;
+  }
+    /* ICON EM FORMATO DE BOLA */
+    img {
+        width: 280px;
+        height: 280px; /* importante */
+        object-fit: cover; /* não distorce */
+        border-radius: 50%; /* vira círculo */
+
+        margin-bottom: 25px;
+
+        
+        /* opcional: glow leve */
+        box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    .text {
+        font-size: 50px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+
+        background: linear-gradient(90deg, black, white, black);
+        background-size: 200% auto;
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        animation: move 2s linear infinite;
+    }
+
+    @keyframes move {
+        from {
+            background-position: 200% center;
+        }
+        to {
+            background-position: 0% center;
+        }
+    }
+</style>
+<body>
+<button id="play-pause-btn" class="btn">۶ৎ</button>
+<!-- Música -->
+<audio id="audio" loop>
+  <source src="https://cdn.discordapp.com/attachments/1478133635986096208/1491194699174908144/aa.mp3?ex=69d6cec9&is=69d57d49&hm=67e8253c7a131ba391a241d7a57bc0b2ef3e723a98a3f41b4bbb334918df5a75&" type="audio/mpeg" />
+</audio>
+</body>
+<script>
+  const audio = document.getElementById('audio');
+  const progress = document.getElementById('progress');
+  const progressContainer = document.getElementById('progress-container');
+  const playPauseBtn = document.getElementById('play-pause-btn');
+
+  function playMedia() {
+    audio.play();
+    playPauseBtn.textContent = '۶ৎ';
+  }
+
+  function pauseMedia() {
+    audio.pause();
+    playPauseBtn.textContent = '۶ৎ';
+  }
+
+  playPauseBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      playMedia();
+    } else {
+      pauseMedia();
+    }
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    const percent = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = percent + '%';
+  });
+
+  progressContainer.addEventListener('click', (e) => {
+    const rect = progressContainer.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const width = rect.width;
+    const newTime = (clickX / width) * audio.duration;
+    audio.currentTime = newTime;
+  });
+
+  window.addEventListener('click', () => {
+    if (audio.paused) {
+      playMedia();
+    }
+  }, { once: true });
+</script>
+</head>
